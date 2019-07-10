@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
+  final PageController pageController;
+
+  const CustomDrawer(this.pageController,{Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -24,10 +29,40 @@ class CustomDrawer extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 34, fontWeight: FontWeight.bold),
                       ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Olá, ",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          GestureDetector(
+                            child: Text(
+                              "Entre ou Cadastre-se >",
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onTap: () {},
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
               )
+            ,
+            Divider( color: Colors.transparent,),
+            DrawerTile(Icons.home,"Início", pageController, 0),
+            DrawerTile(Icons.list,"Produtos", pageController,1),
+            DrawerTile(Icons.location_on,"Lojas", pageController,2),
+            DrawerTile(Icons.playlist_add_check,"Meus Pedidos", pageController,3),
             ],
           )
         ],

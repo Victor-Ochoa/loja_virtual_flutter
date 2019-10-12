@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/screens/login_screen.dart';
+import 'package:loja_virtual/screens/signup_screen.dart';
 import 'package:loja_virtual/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
   final PageController pageController;
 
-  const CustomDrawer(this.pageController,{Key key}) : super(key: key);
+  const CustomDrawer(this.pageController, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,20 +51,25 @@ class CustomDrawer extends StatelessWidget {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
+                            },
                           )
                         ],
                       ),
                     )
                   ],
                 ),
-              )
-            ,
-            Divider( color: Colors.transparent,),
-            DrawerTile(Icons.home,"Início", pageController, 0),
-            DrawerTile(Icons.list,"Produtos", pageController,1),
-            DrawerTile(Icons.location_on,"Lojas", pageController,2),
-            DrawerTile(Icons.playlist_add_check,"Meus Pedidos", pageController,3),
+              ),
+              Divider(
+                color: Colors.transparent,
+              ),
+              DrawerTile(Icons.home, "Início", pageController, 0),
+              DrawerTile(Icons.list, "Produtos", pageController, 1),
+              DrawerTile(Icons.location_on, "Lojas", pageController, 2),
+              DrawerTile(
+                  Icons.playlist_add_check, "Meus Pedidos", pageController, 3),
             ],
           )
         ],

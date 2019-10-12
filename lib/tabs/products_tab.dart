@@ -18,6 +18,7 @@ class ProductsTab extends StatelessWidget {
         else{
           
           var dividedTiles = ListTile.divideTiles(
+            context: context,
             tiles: snapshot.data.documents
                   .map((doc) => CategoryTile(doc))
                   .toList(),

@@ -9,6 +9,9 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  var _buttomDisable = false;
+
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
@@ -17,6 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           title: Text("Criar Conta"),
           centerTitle: true,
@@ -87,7 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: 44,
                     child: RaisedButton(
-                      onPressed: () {
+                      onPressed:_buttomDisable ? null : () {
                         if (_formKey.currentState.validate()) {
                           model.signUp(
                               userData: {
@@ -115,7 +119,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
         }));
   }
 
-  void _onSuccess() {}
+  void _onSuccess() {
+    setState(() {
+     _buttomDisable = true; 
+    });
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: Text("Usuário criado com sucesso!"),
+        backgroundColor: Theme.of(context).primaryColor,
+        duration: Duration(seconds: 2),
+        )
+      );
 
-  void _onFail() {}
+      Future.delayed(Duration(seconds: 2)).then((_){
+        Navigator.of(context).pop();
+      });
+  }
+
+  void _onFail() { 
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: Text("Falha ao criar o Usuário!"),
+        backgroundColor: Colors.redAccent,
+        duration: Duration(seconds: 2),
+        )
+      );}
 }

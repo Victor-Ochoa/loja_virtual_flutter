@@ -91,20 +91,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: 44,
                     child: RaisedButton(
-                      onPressed:_buttomDisable ? null : () {
-                        if (_formKey.currentState.validate()) {
-                          model.signUp(
-                              userData: {
-                                "name": _nameController.text,
-                                "email": _emailController.text,
-                                "address": _addressController.text
-                              },
-                              pass: _passController.text,
-                              onSuccess: _onSuccess,
-                              onFail: _onFail);
-                          return;
-                        }
-                      },
+                      onPressed: _buttomDisable
+                          ? null
+                          : () {
+                              if (_formKey.currentState.validate()) {
+                                model.signUp(
+                                    userData: {
+                                      "name": _nameController.text,
+                                      "email": _emailController.text,
+                                      "address": _addressController.text
+                                    },
+                                    pass: _passController.text,
+                                    onSuccess: _onSuccess,
+                                    onFail: _onFail);
+                                return;
+                              }
+                            },
                       child: Text(
                         "Criar Conta",
                         style: TextStyle(fontSize: 18, color: Colors.white),
@@ -121,27 +123,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void _onSuccess() {
     setState(() {
-     _buttomDisable = true; 
+      _buttomDisable = true;
     });
-    _scaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        content: Text("Usuário criado com sucesso!"),
-        backgroundColor: Theme.of(context).primaryColor,
-        duration: Duration(seconds: 2),
-        )
-      );
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text("Usuário criado com sucesso!"),
+      backgroundColor: Theme.of(context).primaryColor,
+      duration: Duration(seconds: 2),
+    ));
 
-      Future.delayed(Duration(seconds: 2)).then((_){
-        Navigator.of(context).pop();
-      });
+    Future.delayed(Duration(seconds: 2)).then((_) {
+      Navigator.of(context).pop();
+    });
   }
 
-  void _onFail() { 
-    _scaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        content: Text("Falha ao criar o Usuário!"),
-        backgroundColor: Colors.redAccent,
-        duration: Duration(seconds: 2),
-        )
-      );}
+  void _onFail() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text("Falha ao criar o Usuário!"),
+      backgroundColor: Colors.redAccent,
+      duration: Duration(seconds: 2),
+    ));
+  }
 }

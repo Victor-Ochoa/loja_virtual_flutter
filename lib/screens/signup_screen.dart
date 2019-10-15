@@ -88,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 44,
                     child: RaisedButton(
                       onPressed: () {
-                        if (!_formKey.currentState.validate()) {
+                        if (_formKey.currentState.validate()) {
                           model.signUp(
                               userData: {
                                 "name": _nameController.text,

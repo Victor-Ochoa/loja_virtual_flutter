@@ -13,12 +13,20 @@ class CartModel extends Model {
   int totalProductQuantity() =>
       products == null ? 0 : products.fold<int>(0, (p, c) => c.quantity + p);
 
+  String couponCode = "";
+  int discountPercentage = 0;
+
   bool isLoading = false;
 
   CartModel(this.user){
     if(user.isLoggedIn())
       _loadCartItems();
       
+  }
+
+  void setCupom(String couponCode, int discountPercentage){
+    this.couponCode = couponCode;
+    this.discountPercentage = discountPercentage;
   }
 
   static CartModel of(BuildContext context) =>

@@ -19,7 +19,6 @@ class ShipCard extends StatelessWidget {
             child: TextFormField(
               initialValue: "",
               onFieldSubmitted: (text) {
-                
               },
               decoration: InputDecoration(
                   border: OutlineInputBorder(), hintText: "Digite seu CEP"),

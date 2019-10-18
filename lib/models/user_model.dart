@@ -4,7 +4,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/material.dart';
 
 
-const USER_COLLECTION = "users";
+const USER_COLLECTION = "Users";
 
 class UserModel extends Model {
   FirebaseAuth _auth = FirebaseAuth.instance;

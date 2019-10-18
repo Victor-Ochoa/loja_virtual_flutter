@@ -9,7 +9,9 @@ class CartTile extends StatelessWidget {
 
   CartTile(this.cartProduct);
 
-  Widget _buildContent(BuildContext context) => Row(
+  Widget _buildContent(BuildContext context) {
+    CartModel.of(context).updateData();
+    return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
@@ -78,6 +80,7 @@ class CartTile extends StatelessWidget {
           )
         ],
       );
+  }
 
   @override
   Widget build(BuildContext context) {

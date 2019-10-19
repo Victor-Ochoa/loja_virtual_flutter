@@ -12,7 +12,7 @@ class CartProduct {
 
   ProductData productData;
 
-  CartProduct(this.productId, this.size, this.quantity, this.category);
+  CartProduct(this.productId, this.size, this.quantity, this.category, this.productData);
 
   CartProduct.fromDocument(DocumentSnapshot document) {
     cartId = document.documentID;
@@ -27,6 +27,6 @@ class CartProduct {
         "productId": productId,
         "quantity": quantity,
         "size": size,
-        //"product": productData.toResumeMap()
+        "product": productData.toResumeMap()
       };
 }
